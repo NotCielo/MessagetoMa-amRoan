@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Message to Ma'am Roan</title>
+	<style>
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			margin: 0;
+		}
+		#click, #newmessage {
+			border: solid 1px #fc315d;
+			width: 500px;
+			margin: auto;
+			text-align: center;
+			padding: 20px;
+			border-radius: 80px;
+			background: #faa1b4;
+			box-shadow: 0 0 20px rgba(252, 49, 93, 0.8);
+		}
+		button {
+			display: flex;
+			margin: auto;
+			margin-top: 30px;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+		.button1 {
+			background: #fc315d;
+			border: solid #fc315d 1px;
+			border-radius: 50px;
+			box-shadow: 3px 3px 8px rgba(252, 49, 93, 0.3);
+			width: 150px;
+			height: 35px;		
+		}
+		.button1:hover {
+			background: #faa1b4;
+			border: solid #fc315d 1px;
+			border-radius: 50px;
+			box-shadow: 3px 3px 8px rgba(252, 49, 93, 0.3);
+			width: 150px;
+			height: 35px;		
+		}
+		span {
+			display: inline-block;
+		}
+		#newmessage {
+			display: none;
+		}
+		.zoom-effect {
+		  transition: transform 0.3s ease; 
+		}
+		.zoom-effect:hover {
+		  transform: scale(1.30);
+		  box-shadow: 0 0 20px rgba(252, 49, 93, 0.8);
+		}
+		p {
+			text-align: justify;
+		}
+	</style>
+</head>
+<body>
+	<div id="click" onclick="revMessage()">
+		<h1>Message to Ma'am Roan</h1>
+		<button onclick="revealMessage(event)" class="button1 zoom-effect">
+			<b><span>See Message</span></b>
+		</button>
+	</div>
+
+	<div id="newmessage">
+		<h1>Message to Ma'am Roan</h1>
+		<p id="message"></p>
+		<button id="button" onclick="confirmRestart()" class="button1 zoom-effect">
+			<b><span>Done Reading</span></b>
+		</button>
+	</div>
+
+	<script>
+
+		function revMessage() {
+			document.getElementById("click").style.display = "none";
+			document.getElementById("newmessage").style.display = "block";
+			typeMessage(); 
+		}
+
+		function revealMessage(event) {
+			event.stopPropagation();
+			revMessage();
+		}
+
+		function typeMessage() {
+			const messageElement = document.getElementById("message");
+			const messageText = "Hi Ma'am Roan, this is the first time you’ve been my teacher or professor, but before, I’ve heard a lot about you. Some people said you are a strict or serious teacher, but I didn’t believe them right away. However, when you became my teacher, I saw that what they said wasn’t true because you don’t get upset or angry unless it’s because of us. You even joke around with us and are in a good mood most of the time, so for me, you’re a kind professor. Also, I didn’t like ITWS at first because I prefer focusing more on databases or C++ and Java, but because of you, I became interested in website development and ITWS. That’s all for my message. I hope you’re doing well. Thank you for this semester. Thank you!";
+			let index = 0;
+
+			function type() {
+				if (index < messageText.length) {
+					messageElement.textContent += messageText.charAt(index);
+					index++;
+					setTimeout(type, 10); 
+				}
+			}
+
+			type();
+		}
+
+		function confirmRestart() {
+			const userConfirmed = confirm("Do you want to Restart?");
+			if (userConfirmed) {
+				location.reload(); 
+			} else {
+				alert("Thank you for reading!");
+			}
+		}
+	</script>
+</body>
+</html>
